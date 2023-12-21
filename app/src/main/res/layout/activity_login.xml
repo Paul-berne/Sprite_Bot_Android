@@ -1,0 +1,58 @@
+<!-- res/layout/activity_login.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/loginLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Login : " />
+
+    <TextView
+        android:id="@+id/pwdLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loginLabel"
+        android:layout_marginTop="38dp"
+        android:text="Password : " />
+
+    <EditText
+        android:id="@+id/txtLogin"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loginLabel"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="-39dp"
+        android:layout_toEndOf="@id/loginLabel" />
+
+    <EditText
+        android:id="@+id/txtPwd"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pwdLabel"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="-39dp"
+        android:layout_toEndOf="@id/pwdLabel"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtPwd"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Login" />
+
+    <Button
+        android:id="@+id/btnChangePassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Password"
+        android:layout_below="@id/txtPwd"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@id/btnLogin"
+        android:layout_marginStart="20dp"/>
+</RelativeLayout>

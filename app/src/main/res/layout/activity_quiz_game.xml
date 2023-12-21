@@ -1,0 +1,52 @@
+<!-- res/layout/activity_quiz_game.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/questionLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Question goes here"
+        android:layout_marginTop="50dp"/>
+
+    <RadioButton
+        android:id="@+id/answer1RadioButton"
+        android:layout_width="377dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/questionLabel"
+        android:layout_marginTop="21dp"
+        android:text="Answer 1" />
+
+    <RadioButton
+        android:id="@+id/answer2RadioButton"
+        android:layout_width="378dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/answer1RadioButton"
+        android:layout_marginTop="9dp"
+        android:text="Answer 2" />
+
+    <RadioButton
+        android:id="@+id/answer3RadioButton"
+        android:layout_width="376dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/answer2RadioButton"
+        android:layout_marginTop="10dp"
+        android:text="Answer 3" />
+
+    <RadioButton
+        android:id="@+id/answer4RadioButton"
+        android:layout_width="377dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/answer3RadioButton"
+        android:layout_marginTop="10dp"
+        android:text="Answer 4" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/answer4RadioButton"
+        android:layout_marginTop="26dp"
+        android:text="Submit" />
+</RelativeLayout>
