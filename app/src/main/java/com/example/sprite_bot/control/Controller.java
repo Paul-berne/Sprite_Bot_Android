@@ -27,20 +27,10 @@ import android.view.Display;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.sprite_bot.DAO.DAOsqlAnswer;
-import com.example.sprite_bot.DAO.DAOsqlQuestion;
-import com.example.sprite_bot.DAO.DataFileUser;
-import com.example.sprite_bot.model.Answer;
-import com.example.sprite_bot.model.Player;
-import com.example.sprite_bot.model.Question;
-import com.example.sprite_bot.model.QuizGame;
-import com.example.sprite_bot.view.ChangePassword;
-import com.example.sprite_bot.view.GameStart;
-import com.example.sprite_bot.view.LoginActivity;
-import com.example.sprite_bot.view.QuizGameActivity;
-import com.example.sprite_bot.view.RecapGameActivity;
+import com.example.sprite_bot.DAO.*;
+import com.example.sprite_bot.model.*;
+import com.example.sprite_bot.view.*;
 
-import javax.swing.*;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -65,10 +55,7 @@ public class Controller extends Context {
     private Configuration myConfiguration;
 
     public Controller() throws ParseException, SQLException {
-        this.myConfiguration = new Configuration();
-        this.myLogin = new LoginActivity();
-        this.myLogin.setLocation(100, 100);
-        myLogin.setVisible(true);
+        this.myConfiguration = new Configuration(this);
         initializeQuestions();
     }
 
@@ -596,7 +583,7 @@ public class Controller extends Context {
         return false;
     }
 
-    private void initializeQuestions() {
+    private void initializeQuestions() throws SQLException, ParseException {
         lesQuestions = new ArrayList<>();
         Random random = new Random();
         ArrayList<Integer> numerosUtilises = new ArrayList<>();
@@ -640,42 +627,37 @@ public class Controller extends Context {
     }
 
     public void CreateFrameChangePassword(String thelogin) {
-        SwingUtilities.invokeLater(() -> {
-            ChangePassword monIHM = new ChangePassword(this, thelogin);
-            monIHM.setVisible(true);
-        });
+
     }
 
-    public void CreateQuizGameGUI() {
-        SwingUtilities.invokeLater(() -> {
-            QuizGameGUI monIHM = null;
+    public void CreateQuizGameGUI() throws SQLException, ParseException {
+        try {
+            initializeQuestions();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
 
-            if (lesQuestions.isEmpty()) {
-                initializeQuestions();
-            }
-
-            this.theGame = new QuizGame(lePlayer, 0, lesQuestions);
-            monIHM = new QuizGameGUI(this, theGame);
-            monIHM.setVisible(true);
-        });
+        this.theGame = new QuizGame(lePlayer, 0, lesQuestions);
     }
 
     public void CreateGameStart() {
-        SwingUtilities.invokeLater(() -> {
-            GameStart monIHM = new GameStart(this);
-            monIHM.setVisible(true);
-        });
+
     }
 
     public void CreateRecapGame(int playerscore, Boolean hasWon) {
-        SwingUtilities.invokeLater(() -> {
-            RecapGame recapGame = new RecapGame(this, playerscore, hasWon);
-            recapGame.setVisible(true);
-        });
+
     }
 
-    public void generateNewQuestions() {
-        initializeQuestions();
+    public void generateNewQuestions() throws SQLException, ParseException {
+        try {
+            initializeQuestions();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public QuizGame getTheGame() {
@@ -710,11 +692,11 @@ public class Controller extends Context {
         this.lesReponses = lesReponses;
     }
 
-    public Login getMyLogin() {
+    public LoginActivity getMyLogin() {
         return myLogin;
     }
 
-    public void setMyLogin(Login myLogin) {
+    public void setMyLogin(LoginActivity myLogin) {
         this.myLogin = myLogin;
     }
 

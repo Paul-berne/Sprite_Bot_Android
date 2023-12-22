@@ -53,7 +53,13 @@ public class RecapGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Génère de nouvelles questions, ferme l'activité actuelle et lance une nouvelle partie
-                controller.generateNewQuestions();
+                try {
+                    controller.generateNewQuestions();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
                 startActivity(new Intent(RecapGameActivity.this, QuizGameActivity.class));
                 finish();
             }

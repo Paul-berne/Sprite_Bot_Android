@@ -35,7 +35,13 @@ public class GameStart extends AppCompatActivity {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myController.CreateQuizGameGUI();
+                try {
+                    myController.CreateQuizGameGUI();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
                 finish(); // Fermer l'activité actuelle
             }
         });

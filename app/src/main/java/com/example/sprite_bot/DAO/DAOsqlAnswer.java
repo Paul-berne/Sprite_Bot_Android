@@ -2,10 +2,11 @@ package com.example.sprite_bot.DAO;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import com.example.sprite_bot.control.Controller;
@@ -30,7 +31,7 @@ public class DAOsqlAnswer extends SQLiteOpenHelper {
     // Liste des réponses
     private ArrayList<Answer> lesAnswer;
 
-    public DAOsqlAnswer(Context context) {
+    public DAOsqlAnswer(Context context) throws SQLException, ParseException {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.myController = new Controller();
         this.db = this.getWritableDatabase();

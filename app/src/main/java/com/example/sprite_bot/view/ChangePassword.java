@@ -85,7 +85,13 @@ public class ChangePassword extends AppCompatActivity {
                 } else {
                     lblPasswordCheck.setText("");
                     leDAOUser.ChangePasswordUser(login, motDePasse);
-                    myController.CreateQuizGameGUI();
+                    try {
+                        myController.CreateQuizGameGUI();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    } catch (ParseException e) {
+                        throw new RuntimeException(e);
+                    }
                     finish();
                 }
             }
