@@ -3,60 +3,44 @@ package com.example.sprite_bot.control;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.sprite_bot.R;
 
 import java.sql.SQLException;
 import java.text.ParseException;
 
 public class MainActivity extends AppCompatActivity {
 
-    //private Controller leController;
-
-    private EditText txtLogin;
-    private EditText txtPwd;
-    private Button btnLogin;
-    private Button btnChangePassword;
-    private TextView pwdLabel;
-    private TextView loginLabel;
+    private Controller Lecontroller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_main);
 
-        btnLogin = findViewById(R.id.btnLogin);
-        btnChangePassword = findViewById(R.id.btnChangePassword);
-
-        txtLogin = findViewById(R.id.txtLogin);
-        txtPwd = findViewById(R.id.txtPwd);
-
-        pwdLabel = findViewById(R.id.pwdLabel);
-        loginLabel = findViewById(R.id.loginLabel);
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Vrai", Toast.LENGTH_SHORT).show();
-            }
-        });
-        btnChangePassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Faux", Toast.LENGTH_SHORT).show();
-            }
-        });
-/**
+        // Initialise le contrôleur
         try {
-            leController = new Controller();
-        } catch (ParseException | SQLException e) {
-            e.printStackTrace();
+            Lecontroller = new Controller();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-**/
+
+        // Bouton pour créer l'interface graphique du jeu de quiz
+        Button startQuizButton = findViewById(R.id.startQuizButton);
+        startQuizButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    Lecontroller.CreateQuizGameGUI();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        // Autres fonctionnalités peuvent être ajoutées ici
     }
 }
